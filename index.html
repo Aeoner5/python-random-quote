@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MyPlan • Invest in Future Businesses</title>
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="top-bar">
+      <div class="brand">
+        <span class="brand__logo">MyPlan</span>
+        <span class="brand__tagline">Build the next big thing together</span>
+      </div>
+      <nav class="main-nav">
+        <button class="nav-toggle" aria-expanded="false" aria-controls="main-menu">
+          <span class="sr-only">Toggle navigation</span>
+          ☰
+        </button>
+        <ul id="main-menu">
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#plans">Plans</a></li>
+          <li><a href="#profile-builder">Create Profile</a></li>
+          <li><a href="#chat">Chat Lounge</a></li>
+        </ul>
+      </nav>
+      <a class="cta-button" href="#profile-builder">Launch a Plan</a>
+    </header>
+
+    <main>
+      <section id="hero" class="hero">
+        <div class="hero__content">
+          <h1>Invest in people, not just ideas.</h1>
+          <p>
+            MyPlan connects visionary planners with believers ready to invest. Discover
+            business roadmaps crafted by passionate individuals and help bring them to scale.
+          </p>
+          <div class="hero__actions">
+            <a class="cta-button" href="#plans">Explore Plans</a>
+            <a class="ghost-button" href="#profile-builder">Share Your Plan</a>
+          </div>
+          <ul class="hero__stats">
+            <li>
+              <span class="hero__stat-value" id="statPlans">0</span>
+              <span class="hero__stat-label">active plans</span>
+            </li>
+            <li>
+              <span class="hero__stat-value" id="statInvestors">0</span>
+              <span class="hero__stat-label">supporters engaged</span>
+            </li>
+            <li>
+              <span class="hero__stat-value" id="statRaised">$0</span>
+              <span class="hero__stat-label">pledged in demo</span>
+            </li>
+          </ul>
+        </div>
+        <div class="hero__visual">
+          <div class="hero__card hero__card--primary">
+            <h3>Featured Plan</h3>
+            <p class="hero__card-title" id="featuredPlanTitle">Loading…</p>
+            <p class="hero__card-text" id="featuredPlanSummary">
+              Discover breakthrough ventures curated by MyPlan.
+            </p>
+            <button class="ghost-button ghost-button--quiet" data-open-featured>
+              View Plan
+            </button>
+          </div>
+          <div class="hero__card hero__card--secondary">
+            <h4>Live Backers</h4>
+            <ul id="featuredBackers">
+              <li>Loading supporters…</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="plans" class="section">
+        <div class="section__heading">
+          <h2>Plans Ready for Lift Off</h2>
+          <div class="section__controls">
+            <label class="field">
+              <span class="field__label">Filter by category</span>
+              <select id="planCategoryFilter">
+                <option value="all">All</option>
+              </select>
+            </label>
+            <label class="field field--search">
+              <span class="sr-only">Search plans</span>
+              <input id="planSearch" type="search" placeholder="Search plans…" />
+              <span class="material-icon">🔍</span>
+            </label>
+          </div>
+        </div>
+        <div id="planGrid" class="plan-grid" aria-live="polite"></div>
+        <div id="emptyState" class="empty-state hidden">
+          <h3>No plans match your filters yet</h3>
+          <p>Try adjusting the filters or share a new plan of your own.</p>
+          <a class="ghost-button" href="#profile-builder">Create a plan</a>
+        </div>
+      </section>
+
+      <section id="profile-builder" class="section section--alt">
+        <div class="section__heading">
+          <h2>Profile Builder</h2>
+          <p>
+            Craft your plan’s story, define milestones, and publish to attract committed
+            investors. Everything saves locally for this interactive prototype.
+          </p>
+        </div>
+        <div class="profile-builder">
+          <form id="profileForm" class="profile-form">
+            <div class="form-row">
+              <label class="field">
+                <span class="field__label">Plan Name</span>
+                <input type="text" name="title" required placeholder="Skyline Organic Markets" />
+              </label>
+              <label class="field">
+                <span class="field__label">Category</span>
+                <select name="category" required>
+                  <option value="Food & Beverage">Food & Beverage</option>
+                  <option value="Technology">Technology</option>
+                  <option value="Health">Health</option>
+                  <option value="Education">Education</option>
+                  <option value="Sustainability">Sustainability</option>
+                  <option value="Creative">Creative</option>
+                </select>
+              </label>
+            </div>
+            <label class="field">
+              <span class="field__label">Summary</span>
+              <textarea
+                name="summary"
+                rows="3"
+                required
+                placeholder="One-liner that captures your vision and impact."
+              ></textarea>
+            </label>
+            <div class="form-row">
+              <label class="field">
+                <span class="field__label">Funding Goal (USD)</span>
+                <input
+                  type="number"
+                  name="goal"
+                  min="1000"
+                  step="100"
+                  required
+                  placeholder="50000"
+                />
+              </label>
+              <label class="field">
+                <span class="field__label">Current Traction</span>
+                <input
+                  type="text"
+                  name="traction"
+                  required
+                  placeholder="Pilot stores launched in 3 cities"
+                />
+              </label>
+            </div>
+            <label class="field">
+              <span class="field__label">Milestones</span>
+              <textarea
+                name="milestones"
+                rows="4"
+                placeholder="List milestone bullets or a short roadmap."
+              ></textarea>
+            </label>
+            <label class="field">
+              <span class="field__label">Why Now?</span>
+              <textarea
+                name="whyNow"
+                rows="3"
+                placeholder="Explain market timing and unique advantages."
+              ></textarea>
+            </label>
+            <div class="form-actions">
+              <button type="submit" class="cta-button">Publish Plan</button>
+              <button type="reset" class="ghost-button">Reset</button>
+            </div>
+          </form>
+          <aside class="profile-preview" aria-live="polite">
+            <h3>Live Preview</h3>
+            <article id="profilePreview" class="plan-card plan-card--preview">
+              <header>
+                <p class="plan-card__category">Category</p>
+                <h4 class="plan-card__title">Your plan title here</h4>
+              </header>
+              <p class="plan-card__summary">
+                As you type, your pitch preview updates. Keep it crisp and inspiring.
+              </p>
+              <dl class="plan-card__meta">
+                <div>
+                  <dt>Funding Goal</dt>
+                  <dd>$0</dd>
+                </div>
+                <div>
+                  <dt>Current Traction</dt>
+                  <dd>—</dd>
+                </div>
+              </dl>
+              <div class="plan-card__milestones">
+                <h5>Milestones</h5>
+                <p>—</p>
+              </div>
+              <div class="plan-card__why">
+                <h5>Why Now</h5>
+                <p>—</p>
+              </div>
+            </article>
+          </aside>
+        </div>
+      </section>
+
+      <section id="chat" class="section">
+        <div class="section__heading">
+          <h2>Chat Lounge</h2>
+          <p>
+            Join community rooms, pitch in private, or start your own hub. Messages stay in
+            this browser so you can prototype collaboration flows safely.
+          </p>
+        </div>
+        <div class="chat">
+          <aside class="chat__sidebar">
+            <div class="field">
+              <label class="field__label" for="displayName">Display Name</label>
+              <input id="displayName" type="text" placeholder="Your name" />
+            </div>
+            <div class="chat__room-controls">
+              <h3>Rooms</h3>
+              <button id="createRoomBtn" class="ghost-button">Create Room</button>
+            </div>
+            <ul id="roomList" class="chat__rooms" aria-live="polite"></ul>
+          </aside>
+          <section class="chat__main">
+            <header class="chat__header">
+              <div>
+                <h3 id="activeRoomTitle">Select a room</h3>
+                <p id="activeRoomDesc">Join a room to start chatting.</p>
+              </div>
+              <span id="activeRoomMembers" class="chat__members-count">0 members</span>
+            </header>
+            <ul id="messageList" class="chat__messages" aria-live="polite"></ul>
+            <form id="messageForm" class="chat__composer">
+              <label class="sr-only" for="messageInput">Message</label>
+              <textarea
+                id="messageInput"
+                rows="2"
+                placeholder="Share your thoughts with the room…"
+              ></textarea>
+              <button type="submit" class="cta-button" disabled>Send</button>
+            </form>
+          </section>
+          <aside class="chat__tips">
+            <h4>Collaboration Tips</h4>
+            <ul>
+              <li>Share milestones to build trust.</li>
+              <li>Investors: ask about go-to-market strategy.</li>
+              <li>Planners: outline clear funding usage.</li>
+              <li>Create private rooms to work closely with partners.</li>
+            </ul>
+            <p class="chat__notice">
+              This prototype stores data locally. Refresh to clear conversations and plans.
+            </p>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <strong>MyPlan</strong>
+        <p>Fueling the next wave of founder-led ventures.</p>
+      </div>
+      <ul class="footer-links">
+        <li><a href="#plans">Discover</a></li>
+        <li><a href="#profile-builder">Launch</a></li>
+        <li><a href="#chat">Collaborate</a></li>
+        <li><a href="docs/site-plan.md">Product Outline</a></li>
+      </ul>
+      <p class="site-footer__legal">Prototype experience · Not an investment offer</p>
+    </footer>
+
+    <dialog id="planModal" class="modal">
+      <article class="modal__content" id="modalContent">
+        <header class="modal__header">
+          <h3 id="modalTitle">Plan Title</h3>
+          <button type="button" class="ghost-button ghost-button--icon" data-close-modal>
+            ✕
+          </button>
+        </header>
+        <section class="modal__body" id="modalBody">
+          <p>Plan overview loading…</p>
+        </section>
+        <footer class="modal__footer">
+          <button class="cta-button" type="button">Invest (Demo)</button>
+          <button class="ghost-button" type="button">Follow Plan</button>
+        </footer>
+      </article>
+    </dialog>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <script src="assets/js/app.js" type="module"></script>
+  </body>
+</html>
